@@ -1,12 +1,10 @@
 <template>
 
 </template>
-
 <script>
 export default {
-  name: 'AdminPage',
   created() {
-    this.$router.push('/admin/dashboard')
+    this.$router.push('/admin')
   }
 }
 </script>

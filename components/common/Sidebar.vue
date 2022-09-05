@@ -19,7 +19,7 @@
             <div class="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
               <div class="flex-shrink-0 flex items-center px-4">
                 <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-mark.svg?color=indigo&shade=600" alt="Workflow" />
-                <p class="font-semibold text-cyan-600 ml-4">CarWash Facility</p>
+                <p class="font-semibold text-cyan-600 ml-4 cursor-default">CarWash Facility</p>
               </div>
               <nav class="mt-5 px-2 space-y-1">
                 <a v-for="item in navigation" :key="item.name" :href="item.href" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md">
@@ -43,11 +43,11 @@
         <div class="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
           <div class="flex items-center flex-shrink-0 px-4">
             <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-mark.svg?color=cyan&shade=600" alt="Workflow" />
-            <p class="font-semibold text-cyan-600 ml-4">CarWash Facility</p>
+            <p class="font-semibold text-cyan-600 ml-4 cursor-default">CarWash Facility</p>
           </div>
           <nav class="mt-5 flex-1 px-2 bg-white space-y-1">
             <nuxt-link :to="item.href" @click="navigation.find(nav => nav.current).current = false; item.current = true;" v-for="item in navigation" :key="item.name" :class="[item.current ? 'bg-gray-100 text-gray-900' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900', 'group flex items-center px-2 py-2 text-sm font-medium rounded-md']">
-              <component :is="`${item.icon}Icon`" :is-outline="item.icon === 'Home'" :class="[item.current ? 'text-gray-500' : 'text-gray-400 group-hover:text-gray-500', 'mr-3 flex-shrink-0 h-6 w-6']" aria-hidden="true" />
+              <component :is="`${item.icon}`" :is-outline="item.icon === 'Home'" :class="[item.current ? 'text-gray-500' : 'text-gray-400 group-hover:text-gray-500', 'mr-3 flex-shrink-0 h-6 w-6']" aria-hidden="true" />
               {{ item.name }}
             </nuxt-link>
           </nav>
@@ -78,22 +78,13 @@ export default {
       default: false,
     }
   },
-  watch: {
-    sidebarOpened: {
-      deep: true,
-      immediate: true,
-      handler(val) {
-        console.log(val)
-      }
-    }
-  },
   data() {
     return {
       navigation: [
-        { name: 'Dashboard', href: '/admin/dashboard', icon: 'Home', component: 'Dashboard' },
-        { name: 'Employees', href: '/admin/employees', icon: 'Users',  component: 'Employees' },
-        { name: 'Clients', href: '/admin/clients', icon: 'Identification', component: 'Clients' },
-        { name: 'Activities', href: '/admin/activities', icon: 'ChartBar', component: 'Activities' },
+        { name: 'Dashboard', href: '/admin/dashboard', icon: 'HomeIcon', component: 'Dashboard' },
+        { name: 'Employees', href: '/admin/employees', icon: 'UsersIcon',  component: 'Employees' },
+        { name: 'Clients', href: '/admin/clients', icon: 'IdentificationIcon', component: 'Clients' },
+        { name: 'Activities', href: '/admin/activities', icon: 'ChartBarIcon', component: 'Activities' },
       ]
     }
   }

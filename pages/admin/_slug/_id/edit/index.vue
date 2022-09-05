@@ -5,11 +5,9 @@
       <h1 class="text-2xl font-semibold text-gray-900 capitalize">{{$route.params.slug}}</h1>
     </div>
     <div class="mx-auto px-4 sm:max-w-7xl sm:px-6 md:px-8 lg:max-w-full xl:px-12 ">
-      <!-- Replace with your content -->
       <div class="py-4 mx-auto ">
         <component :is="`Edit${components.find(c => c.plural === capitalize($route.params.slug)).singular}`"></component>
       </div>
-      <!-- /End replace -->
     </div>
   </div>
 </template>
@@ -24,6 +22,10 @@ export default {
   ],
   layout: 'admin',
   name: 'EditPage',
+  validate({ params }) {
+    const regexExp =   /^\d+$/gi;
+    return regexExp.test(params.id)
+  },
   data() {
     return {
       _vm: this,

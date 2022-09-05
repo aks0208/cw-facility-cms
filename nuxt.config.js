@@ -33,7 +33,58 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [],
+  modules: [
+    '@nuxtjs/axios',
+    '@nuxtjs/auth-next'
+  ],
+
+  // Axios module configuration: https://go.nuxtjs.dev/config-axios
+  axios: {
+    headers: {
+      common: {
+        'Accept': 'application/json, text/plain, */*'
+      },
+    },
+    baseURL: process.env.API_URL || 'http://127.0.0.1:3333/cms',
+  },
+  auth: {
+    scopeKey: 'scope',
+    strategies: {
+      local: {
+        token: {
+          property: "token", //property name that the Back-end sends for you as a access token for saving on localStorage and cookie of user browser
+          global: true,
+          required: true,
+          maxAge: 60 * 60 * 24 * 7
+        },
+        refreshToken: {
+          property: 'refresh_token' // change to your refresh token property
+        },
+        user: {
+          property: false,
+          autoFetch: true
+        },
+        //user: false,
+        endpoints: {
+          login: { url: "/login", method: "post" },
+          logout: false,
+          user: { url: '/me', method: 'get' }
+        },
+      },
+    },
+    cookie: {
+      options: {
+        secure: false,
+      },
+    },
+    watchLoggedIn: true,
+    redirect: {
+      logout: '/login',
+      // callback: '/dashboard',
+      home: '/',
+      login: '/login'
+    },
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

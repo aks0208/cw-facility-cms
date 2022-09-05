@@ -19,7 +19,6 @@
                 <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Name</th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Card ID</th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Phone number</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Credit</th>
                 <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
                   <span class="sr-only">Edit</span>
                 </th>
@@ -27,13 +26,12 @@
               </thead>
               <tbody class="bg-white">
               <tr v-if="clients.length"  v-for="(client, i) in clients" :key="i" :class="i % 2 === 0 ? undefined : 'bg-gray-50'">
-                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{{ client.name }}</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ Math.random().toString().slice(2,11) + client.card.id }}</td>
+                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{{ client.first_name }} {{client.last_name}}</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{  client.cards.map(c => c.card.holder_number).toString() }}</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ client.phone_number }}</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ client.card.credit }}</td>
                 <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                   <nuxt-link :to="`${client.id}/edit`" :append="true" class="text-cyan-600 hover:text-cyan-900">
-                    Edit <span class="sr-only">, {{ client.name }}</span>
+                    Edit <span class="sr-only">, {{ client.first_name }}</span>
                   </nuxt-link>
                 </td>
               </tr>
@@ -46,7 +44,6 @@
         </div>
       </div>
     </div>
-    <SlideOver @closeSlideOver="sliderOpened = false" :slider-over-opened="sliderOpened" />
   </div>
 
 </template>
@@ -60,13 +57,11 @@ export default {
   components: {Button, SlideOver},
   data() {
     return {
-      sliderOpened: false,
-      clients: [
-        {id: 1, name: 'Foo Bar', card: {id: 1, credit: 10}, phone_number: '+38761123456'},
-        {id: 2, name: 'John Doe', card: {id: 2, credit: 0}, phone_number: '+38761123457'},
-        {id: 3, name: 'Bar Doe', card: {id: 3, credit: 3}, phone_number: '+38761123467'}
-      ]
+      clients: []
     }
+  },
+  async created() {
+    this.clients = await this.$axios.get('/clients').then(res => res.data)
   }
 }
 

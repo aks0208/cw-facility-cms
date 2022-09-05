@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-0 w-full sm:w-full sm:mx-0 md:mx-12 md:w-1/2">
+  <div class="mx-0 w-full sm:w-full sm:mx-0 md:w-1/2">
 
     <div class="pt-8">
       <div>
@@ -7,15 +7,15 @@
       </div>
 
     </div>
-    <div class="card w-full sm:w-full md:w-10/12">
+    <div v-for="(card, i) in cards.map(c => c.card)" :key="i" class="card w-full sm:w-full md:w-10/12">
       <div>
         <h1>Ajla Bazdar</h1>
-        <h2>ID: 92I34092</h2>
+        <h2>ID: {{ card.holder_number }}</h2>
       </div>
       <div class="flex flex-row justify-between items-end">
-        <h2 class="w-1/2">Credit: 123 KM</h2>
+        <h2 class="w-1/2">Credit: {{ card.balance }} KM</h2>
         <div class="flex flex-col w-full items-end">
-          <InputField class="w-1/3 mb-4" id="credit" label="Add credit" label-color="text-white" :is-required="true" v-model="card" />
+          <InputField class="w-1/3 mb-4" id="credit" label="Add credit" label-color="text-white" :is-required="true" v-model="newBalance" />
           <Button class="w-1/3 flex justify-end" button-text="Save" />
         </div>
       </div>
@@ -33,9 +33,10 @@ import InputField from "./InputField";
 import Button from "./Button";
 export default {
   components: {Button, InputField},
+  props: ['cards'],
   data() {
     return {
-      card: ''
+      newBalance: ''
     }
   }
 }

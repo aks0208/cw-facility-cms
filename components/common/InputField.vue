@@ -4,7 +4,8 @@
       <span v-if="isRequired">*</span>
     </label>
     <div class="mt-1">
-      <input :type="type" :id="id" v-model="value" autocomplete="off" :placeholder="placeholder" class="shadow-sm focus:ring-cyan-500 focus:border-cyan-500 block w-full sm:text-sm border-gray-300 rounded-md">
+      <input :type="type" :id="id" v-model="data" @input="$emit('input', $event.target.value)" autocomplete="off" :placeholder="placeholder" :class="error ? 'focus:ring-red-500 focus:border-red-500 border-red-300' : 'focus:ring-cyan-500 focus:border-cyan-500 border-gray-300'" class="py-2 shadow-sm block w-full sm:text-sm rounded-md">
+      <p class="mt-1 text-red-500 text-sm" v-if="error">{{error}}</p>
     </div>
   </div>
 </template>
@@ -13,6 +14,10 @@
 export default {
   name: 'InputField',
   props: {
+    value: {
+      type: [String, Number],
+      default: ''
+    },
     label: {
       type: String,
       required: false
@@ -29,10 +34,7 @@ export default {
       type: String,
       default: 'text'
     },
-    value: {
-      type: [String, Number],
-      required: true,
-    },
+
     labelColor: {
       type: String,
       required: false,
@@ -41,8 +43,18 @@ export default {
     placeholder: {
       type: String,
       default: ''
+    },
+    error: {
+      required: false,
+      type: String,
+    },
+
+  },
+  data() {
+    return {
+      data: this.value
     }
-  }
+  },
 }
 </script>
 

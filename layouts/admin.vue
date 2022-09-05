@@ -20,6 +20,7 @@ import Sidebar from "../components/common/Sidebar";
 import Bars3Icon from "../components/icons/Bars3Icon";
 export default {
   components: {Bars3Icon, Sidebar},
+  middleware: ['authenticated'],
   data() {
     return {
       sidebarOpen: false
