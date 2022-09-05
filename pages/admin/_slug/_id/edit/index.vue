@@ -15,8 +15,9 @@
 <script>
 import Crumbs from "../../../../../components/common/Crumbs";
 import EditClient from "../../../../../components/clients/EditClient";
+import EditActivity from "../../../../../components/activities/EditActivity";
 export default {
-  components: {Crumbs, EditClient},
+  components: {Crumbs, EditClient, EditActivity},
   plugins: [
     { src: '~/plugins/mixins.js', },
   ],

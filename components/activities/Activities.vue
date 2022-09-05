@@ -17,6 +17,9 @@
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Card holder number</th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Client</th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Program</th>
+                <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
+                  <span class="sr-only">Show</span>
+                </th>
               </tr>
               </thead>
               <tbody class="bg-white">
@@ -25,7 +28,11 @@
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{  activity.cardProgram.card.holder_number }}</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ activity.cardProgram.card.customer.customer.first_name }} {{activity.cardProgram.card.customer.customer.last_name}}</td>
                 <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{{ activity.cardProgram.program.name }}</td>
-
+                <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                  <nuxt-link :to="`${activity.id}/edit`" :append="true" class="text-cyan-600 hover:text-cyan-900">
+                    Show <span class="sr-only">, {{ activity.name }}</span>
+                  </nuxt-link>
+                </td>
               </tr>
               <tr v-else>
                 <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">No results</td>
