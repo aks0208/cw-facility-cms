@@ -45,7 +45,7 @@ export default {
         'Accept': 'application/json, text/plain, */*'
       },
     },
-    baseURL: process.env.API_URL || 'http://127.0.0.1:3333/cms',
+    baseURL: process.env.API_URL || 'http://127.0.0.1:3333/admin',
   },
   auth: {
     scopeKey: 'scope',
