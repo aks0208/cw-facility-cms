@@ -16,9 +16,12 @@
 
 <script>
 import Crumbs from "../../../../components/common/Crumbs";
-import CreateClient from "../../../../components/clients/CreateClient";
+import CreateCustomer from "../../../../components/customers/CreateCustomer";
+import CreateProgram from "../../../../components/programs/CreateProgram";
+import CreateStep from "../../../../components/steps/CreateStep";
+
 export default {
-  components: {Crumbs, CreateClient},
+  components: {Crumbs, CreateCustomer, CreateProgram, CreateStep},
   plugins: [
     { src: '~/plugins/mixins.js', },
   ],
@@ -29,8 +32,9 @@ export default {
       _vm: this,
       components: [
         {plural: 'Activities', singular: 'Activity'},
-        {plural: 'Teams', singular: 'Team'},
-        {plural: 'Clients', singular: 'Client'},
+        {plural: 'Employees', singular: 'Employee'},
+        {plural: 'Customers', singular: 'Customer'},
+        {plural: 'Programs', singular: 'Program'},
       ]
     }
   }

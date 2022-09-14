@@ -1,6 +1,6 @@
 <template>
   <div class="w-full flex flex-col sm:flex-col">
-    <div v-if="$fetchState.pending">Preparing clients...</div>
+    <div v-if="$fetchState.pending">Preparing steps...</div>
     <div v-else-if="client" class="w-full">
       <Form :errors="errors" :client="client" />
       <Card :cards="client.cards" />
@@ -12,7 +12,7 @@
 import Form from "./Form";
 import Card from "../common/Card"
 export default {
-  name: 'EditClient',
+  name: 'EditStep',
   components: {Form, Card},
   data() {
     return {

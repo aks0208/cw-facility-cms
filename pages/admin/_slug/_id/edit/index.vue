@@ -14,26 +14,31 @@
 
 <script>
 import Crumbs from "../../../../../components/common/Crumbs";
-import EditClient from "../../../../../components/clients/EditClient";
+import EditCustomer from "../../../../../components/customers/EditCustomer";
+import EditProgram from "../../../../../components/programs/EditProgram";
+import EditStep from "../../../../../components/steps/EditStep";
 import EditActivity from "../../../../../components/activities/EditActivity";
 export default {
-  components: {Crumbs, EditClient, EditActivity},
+  components: {Crumbs, EditCustomer, EditActivity, EditProgram, EditStep},
   plugins: [
     { src: '~/plugins/mixins.js', },
   ],
   layout: 'admin',
   name: 'EditPage',
   validate({ params }) {
-    const regexExp =   /^\d+$/gi;
-    return regexExp.test(params.id)
+    const regexNum =   /^\d+$/gi;
+    const regexUuid = /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/gi;
+    return regexNum.test(params.id) || regexUuid.test(params.id)
   },
   data() {
     return {
       _vm: this,
       components: [
         {plural: 'Activities', singular: 'Activity'},
-        {plural: 'Teams', singular: 'Team'},
-        {plural: 'Clients', singular: 'Client'},
+        {plural: 'Employees', singular: 'Employee'},
+        {plural: 'Customers', singular: 'Customer'},
+        {plural: 'Programs', singular: 'Program'},
+        {plural: 'Steps', singular: 'Step'},
       ]
     }
   }

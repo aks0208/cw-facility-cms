@@ -19,13 +19,15 @@
 import Sidebar from "../../../components/common/Sidebar";
 import Dashboard from "../../../components/common/Dashboard";
 import Team from "../../../components/employees/Employees";
-import Clients from "../../../components/clients/Clients";
+import Customers from "../../../components/customers/Customers";
 import Activities from "../../../components/activities/Activities";
+import Programs from "../../../components/programs/Programs";
+import Steps from "../../../components/steps/Steps";
 import Bars3Icon from "../../../components/icons/Bars3Icon";
 import Crumbs from "../../../components/common/Crumbs";
 
 export default {
-  components: {Crumbs, Sidebar, Dashboard, Team, Clients, Activities, Bars3Icon },
+  components: {Crumbs, Sidebar, Dashboard, Team, Customers, Activities, Bars3Icon, Programs, Steps },
   layout: 'admin',
   plugins: [
     { src: '~/plugins/mixins.js' },
@@ -35,9 +37,13 @@ export default {
     switch(params.slug) {
       case 'employees':
         return true;
-      case 'clients':
+      case 'customers':
         return true
       case 'activities':
+        return true;
+      case 'programs':
+        return true;
+      case 'steps':
         return true;
       case 'dashboard':
         return true;

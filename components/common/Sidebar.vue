@@ -83,8 +83,10 @@ export default {
       navigation: [
         { name: 'Dashboard', href: '/admin/dashboard', icon: 'HomeIcon', component: 'Dashboard' },
         { name: 'Employees', href: '/admin/employees', icon: 'UsersIcon',  component: 'Employees' },
-        { name: 'Clients', href: '/admin/clients', icon: 'IdentificationIcon', component: 'Clients' },
+        { name: 'Customers', href: '/admin/customers', icon: 'IdentificationIcon', component: 'Customers' },
         { name: 'Activities', href: '/admin/activities', icon: 'ChartBarIcon', component: 'Activities' },
+        { name: 'Programs', href: '/admin/programs', icon: 'ChartBarIcon', component: 'Programs' },
+        { name: 'Steps', href: '/admin/steps', icon: 'ChartBarIcon', component: 'Steps' },
       ]
     }
   }

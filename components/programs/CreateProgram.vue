@@ -1,6 +1,6 @@
 <template>
   <div class="w-full flex flex-col sm:flex-col md:flex-row">
-    <Form :errors="errors" @action="create($event)" />
+    <Form :errors="errors" :steps="steps" @action="create($event)" />
   </div>
 </template>
 
@@ -8,25 +8,22 @@
 import Form from "./Form";
 import Card from "../common/Card"
 export default {
-  name: 'CreateClient',
+  name: 'CreateProgram',
   components: {Form, Card},
   data() {
     return {
       errors: {
-        first_name: '',
-        last_name: '',
-        email: '',
-        phone_number: '',
-        address: '',
-        city: '',
-        zip_code: ''
-      }
+        name: '',
+        description: '',
+        steps: []
+      },
+      steps: []
     }
   },
   methods: {
     async create(form) {
       try {
-        await this.$axios.post('/clients', form)
+        await this.$axios.post('/programs', form)
         await this.$router.go(-1)
       } catch (e) {
         e.response.data.errors.map((err) => {
@@ -38,6 +35,9 @@ export default {
         });
       }
     }
-  }
+  },
+  async fetch() {
+    this.steps = await this.$axios.get(`/steps/`).then((res) => this.steps = res.data)
+  },
 }
 </script>
